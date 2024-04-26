@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
 
 
+  # 管理者用
+  # URL /admin/sign_in ...
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
+    sessions: "admin/sessions"
+  }
+
+
   # 顧客用
   # URL /customers/sign_in ...
   devise_for :users, skip: [:passwords], controllers: {
@@ -18,11 +25,14 @@ Rails.application.routes.draw do
  		end
   end
 
-  # 管理者用
-  # URL /admin/sign_in ...
-  devise_for :admin, skip: [:registrations, :passwords], controllers: {
-    sessions: "admin/sessions"
-  }
+
+  namespace :admin do
+		resources :items,only: [:index, :new, :create, :show, :edit, :update, :destroy]
+	  resources :users,only: [:index, :show, :edit, :update]
+    resources :orders,only: [:show, :index]
+    resources :orders_detail,only: [:show]
+    resources :genres
+	end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: "homes#top"
