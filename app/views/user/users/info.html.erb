@@ -1,0 +1,66 @@
+<div class="container">
+<h5 style="text-align: center;">
+  <b>会員登録情報</b>
+  <%= link_to edit_path do %>
+    <i class="fa-solid fa-user-pen"></i>
+  <% end %>
+</h5>
+
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <% if @user.present? %>
+        <div class="row form-group">
+          <div class="col-md-12">
+            <b>氏名</b>
+          </div>
+          <%= @user.last_name %>　<%= @user.first_name %>
+        </div>
+
+        <div class="row form-group">
+          <div class="col-md-12">
+            <b>カナ</b>
+          </div>
+          <%= @user.last_name_kana %>　<%= @user.first_name_kana %></td>
+        </div>
+
+        <div class="row form-group">
+          <div class="col-md-12">
+            <b>郵便番号</b>
+          </div>
+          〒<%= @user.postal_code %>
+        </div>
+
+        <div class="row form-group">
+          <div class="col-md-12">
+            <b>住所</b>
+          </div>
+          <%= @user.address %>
+        </div>
+
+        <div class="row form-group">
+          <div class="col-md-12">
+            <b>電話番号</b>
+          </div>
+          <%= @user.telephone_number %>
+        </div>
+
+        <div class="row form-group">
+          <div class="col-md-12">
+            <b>メールアドレス</b>
+          </div>
+          <%= @user.email %>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <%= link_to "戻る", mypage_path , class: "btn btn-light btn-block" %>
+          </div>
+        </div>
+
+
+      <% end %>
+
+    </div>
+  </div>
+</div>
