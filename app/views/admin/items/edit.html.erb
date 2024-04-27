@@ -31,6 +31,16 @@
       <%= f.label :"税抜価格" %>
       <%= f.text_field :price %>円
       <br>
+
+
+
+      <div class="form-group row">
+        <%= f.label :genre_ids, 'ジャンル' %>
+        <div class="col-sm-9">
+          <%= f.collection_select :genre_ids, Genre.all, :id, :name, { selected: @item.genre_ids }, { class: 'form-control' } %>
+        </div>
+      </div>
+
     </div>
   </div>
 

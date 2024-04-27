@@ -1,5 +1,5 @@
 class Genre < ApplicationRecord
-  validates :name, presence: true
+  validates :name, uniqueness: { case_sensitive: false }, presence: true
   validate :name_not_blank
 
   has_many :item_genres, dependent: :destroy

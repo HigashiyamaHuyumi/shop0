@@ -18,8 +18,9 @@
         <% @genres.each do |genre| %>
           <div class="col-md-6 mb-3">
             <div class="genre">
-
+              <%= link_to edit_admin_genre_path(genre) do %>
                 <%= genre.name %>
+              <% end %>
 
               |
               <%= link_to '削除', admin_genre_path(genre), method: :delete, data: { confirm: '本当に削除しますか？' } %>
