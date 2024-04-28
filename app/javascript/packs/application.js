@@ -10,8 +10,13 @@ import "channels"
 
 import "jquery";
 import "popper.js";
+
+import Swiper from 'swiper/swiper-bundle.js';
+import 'swiper/swiper-bundle.css';　　　　　　　　　　　　　　　　　　　　　　　　　　//この行を追記
+
 import "bootstrap";
-import "../stylesheets/application"; 
+import "../stylesheets/application";
+import "script.js"
 
 Rails.start()
 Turbolinks.start()
