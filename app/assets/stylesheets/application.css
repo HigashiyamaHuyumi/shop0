@@ -24,3 +24,13 @@
   --swiper-navigation-color: #ffffff;
   --swiper-pagination-color: #ffffff;
 }
+
+.wrapper {
+  position: relative; /* ナビゲーション、ページネーションの位置決めに必要 */
+  max-width: 1000px; /* サイトにあわせて任意で */
+  margin: 0 auto;
+}
+.swiper {
+  --swiper-navigation-sides-offset: -40px; /* ナビゲーションボタンの位置 */
+  --swiper-pagination-bottom: -20px; /* ページネーションの位置 */
+}

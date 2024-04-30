@@ -7,11 +7,9 @@ class Item < ApplicationRecord
   has_one_attached :image
   has_many :cart_items
   has_many :order_details
-  has_many :genres
+  belongs_to :genre
 
-  has_many :item_genres, dependent: :destroy
-  has_many :genres, through: :item_genres
-  before_destroy :clear_associated_records
+
 
   def get_image
     unless image.attached?
@@ -37,9 +35,4 @@ class Item < ApplicationRecord
     (price * 1.1).floor
   end
 
-  private
-
-  def clear_associated_records
-    item_genres.destroy_all
-  end
 end

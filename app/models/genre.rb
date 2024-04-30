@@ -2,8 +2,7 @@ class Genre < ApplicationRecord
   validates :name, uniqueness: { case_sensitive: false }, presence: true
   validate :name_not_blank
 
-  has_many :item_genres, dependent: :destroy
-  has_many :items, through: :item_genres
+  has_many :items
 
   private
 

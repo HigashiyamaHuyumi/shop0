@@ -13,4 +13,11 @@ const opt = {
 // Swiperを実行(初期化)
 $(document).on('turbolinks:load', function() {
     let swiper = new Swiper('.swiper',opt);
+    $('#banner-image').click(function() {
+        var newImage = prompt("Enter the URL of the new image:");
+        if (newImage !== null && newImage !== "") {
+            $('#banner-image').attr('src', newImage);
+        }
+    });
 });
+

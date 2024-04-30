@@ -10,6 +10,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def create
+    puts params.inspect
     @item = Item.new(item_params)
     if @item.save
       flash[:notice] ='Item was successfully created.'
@@ -21,6 +22,7 @@ class Admin::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @genre = @item.genre
   end
 
   def edit
