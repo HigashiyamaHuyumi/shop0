@@ -9,8 +9,6 @@ class Item < ApplicationRecord
   has_many :order_details
   belongs_to :genre
 
-
-
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image_item.png')

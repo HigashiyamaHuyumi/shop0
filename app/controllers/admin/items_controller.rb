@@ -13,7 +13,7 @@ class Admin::ItemsController < ApplicationController
     puts params.inspect
     @item = Item.new(item_params)
     if @item.save
-      flash[:notice] ='Item was successfully created.'
+      flash[:notice] ='商品を新規作成しました。'
       redirect_to admin_item_path(@item)
     else
       render :new
@@ -42,13 +42,13 @@ class Admin::ItemsController < ApplicationController
   def destroy #データを削除する
     @item = Item.find(params[:id])
     @item.destroy
-    redirect_to items_path
+    redirect_to admin_items_path
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:name, :introduction, :price, :color, :image, :genre_id)
+    params.require(:item).permit(:name, :introduction, :price, :color, :genre_id, :image)
   end
 
 end
