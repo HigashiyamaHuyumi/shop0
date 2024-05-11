@@ -6,7 +6,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-
     <script src="https://kit.fontawesome.com/1a020bd911.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -33,6 +32,12 @@
             <ul class="navbar-nav ml-auto">
 
               <% if user_signed_in? %><!-- 顧客がログインしている場合のメニュー項目 -->
+
+                <li class="nav-item">
+                  <%= link_to items_path do %>
+                    <i class="fa-solid fa-shirt"></i>商品一覧
+                  <% end %>
+                </li>
 
                 <li class="nav-item">
                   <%= link_to mypage_path do %>
@@ -73,6 +78,12 @@
                 <li class="nav-item">
                   <%= link_to new_user_registration_path do %>
                     <i class="fa fa-arrow-right-to-bracket"></i> 新規登録
+                  <% end %>
+                </li>
+
+                <li class="nav-item">
+                  <%= link_to items_path do %>
+                    <i class="fa-solid fa-shirt"></i>商品一覧
                   <% end %>
                 </li>
 

@@ -23,6 +23,9 @@ Rails.application.routes.draw do
  		  get :confirm, on: :member # 退会確認
      patch :withdrawal, on: :member # 退会処理
  		end
+ 		resources :items
+ 		resources :cart_items
+ 		resources :orders
   end
 
 

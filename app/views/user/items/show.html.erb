@@ -1,0 +1,31 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-5">
+
+      <% if @item.image.attached? %>
+        <%= image_tag @item.image, width: 250, height: 500 %>
+      <% else %>
+        <%= image_tag "no_image.jpg", width: 250, height: 500 %>
+      <% end %>
+    </div>
+
+    <div class="col-md-5">
+      <b><%= @item.name %></b>
+      <p><%= @item.introduction %></p>
+      <b>￥<%= number_with_delimiter((@item.price * 1.1).to_i) %></b>(税込)
+
+      <% if current_user %>
+        <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+          <div class="form-group"
+            <%= f.label :amount, "数量:" %>
+            <%= f.select :amount, (1..10).to_a.unshift("数量選択"), {}, { class: "form-control" } %>
+          </div>
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.submit "カートに入れる", class: "btn btn-success" %>
+        <% end %>
+      <% end %>
+    </div>
+
+  </div>
+</div>

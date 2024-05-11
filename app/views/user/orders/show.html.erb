@@ -1,0 +1,88 @@
+<div class="container">
+  <h5><span style="background-color: #dcdcdc;">注文履歴詳細</span></h5>
+
+  <div class="row">
+
+    <div class="col-md-8">
+      <b>注文情報</b>
+      <table class="table" border="1">
+        <tr>
+          <th style="border: 1px solid black;">注文日</th>
+          <td style="border: 1px solid black;"><%= @order.created_at %></td>
+        </tr>
+
+        <tr>
+          <th>配送先</th>
+          <td style="border: 1px solid black;">
+            <%= @order.shipping_postal_code %><br>
+            <%= @order.shipping_address %><br>
+            <%= @order.shipping_name %>
+          </td>
+        </tr>
+
+        <tr>
+          <th style="border: 1px solid black;">支払方法</th>
+          <td style="border: 1px solid black;">
+            <% if @order.payment_method == "credit_card" %>
+              <%= "クレジットカード" %>
+            <% elsif @order.payment_method == "transfer" %>
+              <%= "銀行振込" %>
+            <% end %>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+
+    <div class="col-md-4">
+      <b>請求情報</b>
+      <table class="table" border="1">
+        <tr>
+          <th style="border: 1px solid black;">商品合計</th>
+          <td style="border: 1px solid black;"><%= (@total_payment * 1.1 ).floor.to_s(:delimited) %></td>
+        </tr>
+
+        <tr>
+          <th style="border: 1px solid black;">送料</th>
+          <td style="border: 1px solid black;"><%= @order.postage %></td>
+        </tr>
+
+        <tr>
+          <th style="border: 1px solid black;">ご請求額</th>
+          <td style="border: 1px solid black;"><%= (@total_payment * 1.1 + 800).floor.to_s(:delimited) %></td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+
+      <b>注文内容</b>
+
+      <table class="table" border="1">
+        <thead>
+          <tr>
+            <th style="border: 1px solid black;">商品</th>
+            <th style="border: 1px solid black;">単価(税込)</th>
+            <th style="border: 1px solid black;">個数</th>
+            <th style="border: 1px solid black;">小計</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @order_details.each do |order_detail| %>
+          <tr>
+            <td style="border: 1px solid black;"><%= order_detail.item.name %></td>
+            <td style="border: 1px solid black;"><%= (order_detail.purchase_price * 1.1).floor.to_s(:delimited) %></td>
+            <td style="border: 1px solid black;"><%= order_detail.amount %></td>
+            <td style="border: 1px solid black;"><%= (order_detail.purchase_price * order_detail.amount * 1.1).floor.to_s(:delimited) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>
