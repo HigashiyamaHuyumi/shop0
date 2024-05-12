@@ -12,7 +12,7 @@ class User::CartItemsController < ApplicationController
     else
       @cart_item = current_user.cart_items.build(item: item, amount: amount)
       if @cart_item.save
-        flash[:success] = "#{amount}個の#{item.name}をカートに追加しました。"
+        flash[:success] = "カートに追加しました。"
       else
         flash[:error] = "商品をカートに追加できませんでした。"
         redirect_to item_path(item)
@@ -30,7 +30,7 @@ class User::CartItemsController < ApplicationController
     end
   end
 
-  def update
+  def update #データを更新する
     if @cart_item.update(cart_item_params)
       flash[:success] = "カートアイテムを更新しました。"
     else

@@ -3,19 +3,17 @@
   <% items.each do |item| %>
     <div class="col-md-3">
       <div class="card border-0">
-        <% if item.image.attached? %>
-          <%= link_to item_path(item) do %>
+        <%= link_to item_path(item) do %>
+          <% if item.image.attached? %>
             <%= image_tag item.image, width: 265, height: 300 %>
-          <% end %>
-        <% else %>
-          <%= link_to item_path(item) do %>
+          <% else %>
             <%= image_tag "no_image.jpg", width: 265, height: 300 %>
           <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= item.name %></h5>
+            <p class="card-text">￥<%= number_with_delimiter(item.price, precision: 0) %></p>
+          </div>
         <% end %>
-        <div class="card-body">
-          <h5 class="card-title"><%= item.name %></h5>
-          <p class="card-text">￥<%= number_with_delimiter(item.price, precision: 0) %></p>
-        </div>
       </div>
     </div>
   <% end %>

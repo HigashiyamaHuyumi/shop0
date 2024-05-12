@@ -17,11 +17,8 @@
 
       <% if current_user %>
         <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
-          <div class="form-group"
-            <%= f.label :amount, "数量:" %>
-            <%= f.select :amount, (1..10).to_a.unshift("数量選択"), {}, { class: "form-control" } %>
-          </div>
           <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.hidden_field :amount, value: 1 %>
           <%= f.submit "カートに入れる", class: "btn btn-success" %>
         <% end %>
       <% end %>
