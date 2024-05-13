@@ -33,11 +33,13 @@ class User::CartItemsController < ApplicationController
   def update #データを更新する
     if @cart_item.update(cart_item_params)
       flash[:success] = "カートアイテムを更新しました。"
+      redirect_to cart_items_path, notice: '数量が変更されました。'
     else
+      render :index
       flash[:error] = "カートアイテムの更新に失敗しました。"
     end
-    redirect_to cart_items_path
   end
+
 
   def destroy
     @cart_item.destroy

@@ -7,17 +7,20 @@ const opt = {
   navigation: {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
+  },
+  autoplay: {
+    delay: 5000, // 5秒ごとにスライド
+    disableOnInteraction: false // ユーザーの操作で停止しない
   }
-}
+};
 
 // Swiperを実行(初期化)
 $(document).on('turbolinks:load', function() {
-    let swiper = new Swiper('.swiper',opt);
-    $('#banner-image').click(function() {
-        var newImage = prompt("Enter the URL of the new image:");
-        if (newImage !== null && newImage !== "") {
-            $('#banner-image').attr('src', newImage);
-        }
-    });
+    let swiper = new Swiper('.swiper', opt);
 });
+
+
+function submitForm() {
+  document.getElementById("cart-item-form").submit();
+}
 

@@ -21,8 +21,8 @@
 }
 
 :root {
-  --swiper-navigation-color: #ffffff;
-  --swiper-pagination-color: #ffffff;
+  --swiper-navigation-color: #000000;
+  --swiper-pagination-color: #000000;
 }
 
 .wrapper {
