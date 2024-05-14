@@ -1,0 +1,43 @@
+.progress-indicator {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.progress-step .circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+.progress-step.completed .circle {
+  background-color: #000000;
+  color: white;
+}
+
+.progress-step.now .circle {
+  border-color: #000000;
+  border-width: 4px; /* 枠線を太くする */
+  color: #007bff;
+}
+
+.progress-step .label {
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.progress-step.now .label {
+  color: #000000;
+}
+

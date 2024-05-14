@@ -1,16 +1,41 @@
+<div class="d-flex justify-content-center">
+  <div class="col-md-3">
+    <div class="progress-indicator">
+      <div class="progress-step completed">
+        <div class="circle">✓</div>
+        <div class="label">カート</div>
+      </div>
+      <div class="progress-step now">
+        <div class="circle"></div>
+        <div class="label">購入手続き</div>
+      </div>
+      <div class="progress-step">
+        <div class="circle"></div>
+        <div class="label">注文確認</div>
+      </div>
+      <div class="progress-step">
+        <div class="circle"></div>
+        <div class="label">完了</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container">
-  <h5><span style="background-color: #dcdcdc;">注文情報入力</span></h5>
+  <div style="text-align: center;">
+    <h5><b>お届け先・お支払方法</b></h5>
+  </div>
 
 
   <%= form_with model: @order, url: orders_confirmation_path, method: :post do |f| %>
-    <div><b>支払方法</b></div>
+    <h5>・お支払方法</h5>
     <div>
       <%= f.radio_button :payment_method, "credit_card", id: :payment_method_credit_card, required: true %>
       <%= f.label :payment_method_credit_card, "クレジットカード" %>
     </div>
     <div>
-      <%= f.radio_button :payment_method, "transfer", id: :payment_method_transfer, required: true %>
-      <%= f.label :payment_method_transfer, "銀行振込" %>
+      <%= f.radio_button :payment_method, "cash", id: :payment_method_cash, required: true %>
+      <%= f.label :payment_method_cash, "代金引換" %>
     </div>
 
     <div><b>お届け先</b></div>
@@ -23,25 +48,6 @@
       〒<%= current_user.postal_code + "　" + current_user.address %>
       <br>
       <%= current_user.last_name + current_user.first_name %>
-    </div>
-    <div>
-      <%= f.radio_button :address_type, "shipping_address", id: :address_type_shipping, required: true %>
-      <%= f.label :address_type_shipping, "新しいお届け先" %>
-    </div>
-
-    <div id="member_address_fields"><!-- 新しい入力フォーム -->
-      <div class="field">
-        <%= f.label :shipping_postal_code, "郵便番号(ハイフンなし)", class: "label-left" %>
-        <%= f.text_field :shipping_postal_code, autofocus: true, autocomplete: "shipping_postal_code" %>
-      </div>
-      <div class="field">
-        <%= f.label :shipping_address, "住所" , class: "label-left" %>
-        <%= f.text_field :shipping_address, autofocus: true, autocomplete: "shipping_address" %>
-      </div>
-      <div class="field">
-        <%= f.label :shipping_name, "宛名" , class: "label-left" %>
-        <%= f.text_field :shipping_name, autofocus: true, autocomplete: "shipping_name" %>
-      </div>
     </div>
 
     <div class="row text-center">

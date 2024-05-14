@@ -25,7 +25,9 @@ Rails.application.routes.draw do
  		end
  		resources :items
  		resources :cart_items
- 		resources :orders
+ 		resources :orders, only: [:new, :create, :index, :show]
+ 		post '/orders/confirmation', to: 'orders#confirmation', as: 'orders_confirmation'
+  	get '/orders/complete', to: 'orders#complete', as: 'orders_complete'
   end
 
 

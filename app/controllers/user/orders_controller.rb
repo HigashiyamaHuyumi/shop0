@@ -1,4 +1,4 @@
-class Public::OrdersController < ApplicationController
+class User::OrdersController < ApplicationController
 
   def new #注文情報入力
     if current_user.cart_items.empty?

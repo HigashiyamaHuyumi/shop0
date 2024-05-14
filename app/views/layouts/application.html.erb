@@ -105,11 +105,11 @@
         </div>
       </nav>
     </header>
-
     <%= flash[:success] %>
     <%= flash[:error] %>
     <%= flash[:alert] %>
     <%= flash[:notice] %>
     <%= yield %>
+    <%= javascript_pack_tag 'cart' %>
   </body>
 </html>

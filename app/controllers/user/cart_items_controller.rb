@@ -23,22 +23,28 @@ class User::CartItemsController < ApplicationController
 
   def index
     @cart_items = current_user.cart_items
-    @total_amount = 0
-
-    @cart_items.each do |cart_item|
-      @total_amount += cart_item.subtotal
-    end
+    @total_amount = @cart_items.sum(&:subtotal)
   end
 
-  def update #データを更新する
+  def update
     if @cart_item.update(cart_item_params)
-      flash[:success] = "カートアイテムを更新しました。"
-      redirect_to cart_items_path, notice: '数量が変更されました。'
+      @total_amount = current_user.cart_items.sum(&:subtotal)
+      respond_to do |format|
+        format.html { redirect_to cart_items_path, notice: '数量が変更されました。' }
+        format.json do
+          render json: {
+            item_id: @cart_item.id,
+            item_subtotal: view_context.number_with_delimiter(@cart_item.subtotal),
+            total_amount: view_context.number_with_delimiter(@total_amount)
+          }
+        end
+      end
     else
-      render :index
       flash[:error] = "カートアイテムの更新に失敗しました。"
+      render :index
     end
   end
+
 
 
   def destroy
