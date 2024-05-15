@@ -61,12 +61,17 @@
 
 
 
-        <div class="row">
-          <% if @total_amount >= 5000 %>
-            <p>送料0</p>
-          <% elsif @total_amount < 5000%>
-            <p>送料 ￥550（税込）</p>
-          <% end %>
+        <div class="row" style="display: flex; justify-content: space-between; align-items: center;">
+          <div style="text-align:left; flex: 1;">
+            <p style="margin: 0;">送料</p>
+          </div>
+          <div style="text-align:right; flex: 1;">
+            <% if @total_amount >= 5000 %>
+              <p style="margin: 0;">￥0（税込）</p>
+            <% elsif @total_amount < 5000 %>
+              <p style="margin: 0;">￥550（税込）</p>
+            <% end %>
+          </div>
         </div>
 
 

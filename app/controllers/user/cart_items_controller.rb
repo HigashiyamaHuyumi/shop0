@@ -45,18 +45,10 @@ class User::CartItemsController < ApplicationController
     end
   end
 
-
-
   def destroy
     @cart_item.destroy
     flash[:success] = "商品をカートから削除しました。"
     redirect_to cart_items_path
-  end
-
-  def destroy_all
-    current_user.cart_items.destroy_all
-    flash[:success] = "カート内のすべての商品を削除しました。"
-    redirect_to item_index_path
   end
 
   private
