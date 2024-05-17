@@ -24,6 +24,12 @@ class User::CartItemsController < ApplicationController
   def index
     @cart_items = current_user.cart_items
     @total_amount = @cart_items.sum(&:subtotal)
+    @postage = 0
+    if @total_amount >= 5000
+      @postege = 0
+    else
+      @postege = 500
+    end
   end
 
   def update

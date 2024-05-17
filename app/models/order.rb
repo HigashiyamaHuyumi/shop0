@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   enum payment_method: { credit_card: 0, cash: 1 }
-  belongs_to :customer
+  belongs_to :user
   has_many :order_details
 
   #注文内のすべての注文詳細の小計を合計して合計金額を計算
@@ -11,4 +11,5 @@ class Order < ApplicationRecord
     end
     total_payment
   end
+
 end

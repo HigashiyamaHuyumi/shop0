@@ -21,40 +21,66 @@
   </div>
 </div>
 
+
+
 <div class="container">
   <div style="text-align: center;">
     <h5><b>お届け先・お支払方法</b></h5>
   </div>
 
+  <div class="row">
+    <div class="col-md-6">
+      <%= form_with model: @order, url: orders_confirmation_path, method: :post do |f| %>
+        <h5>・お支払方法</h5>
+        <div>
+          <%= f.radio_button :payment_method, "credit_card", id: :payment_method_credit_card, required: true %>
+          <%= f.label :payment_method_credit_card, "クレジットカード" %>
+        </div>
+        <div>
+          <%= f.radio_button :payment_method, "cash", id: :payment_method_cash, required: true %>
+          <%= f.label :payment_method_cash, "代金引換" %>
+        </div>
 
-  <%= form_with model: @order, url: orders_confirmation_path, method: :post do |f| %>
-    <h5>・お支払方法</h5>
-    <div>
-      <%= f.radio_button :payment_method, "credit_card", id: :payment_method_credit_card, required: true %>
-      <%= f.label :payment_method_credit_card, "クレジットカード" %>
-    </div>
-    <div>
-      <%= f.radio_button :payment_method, "cash", id: :payment_method_cash, required: true %>
-      <%= f.label :payment_method_cash, "代金引換" %>
+        <div><b>お届け先</b></div>
+
+        <div>
+          <%= f.radio_button :address_type, "user_address", id: :address_type_user, required: true %>
+          <%= f.label :address_type_user, "ご自身の住所" %>
+        </div>
+        <div>
+          〒<%= current_user.postal_code + "　" + current_user.address %>
+          <br>
+          <%= current_user.last_name + current_user.first_name %>
+        </div>
+
     </div>
 
-    <div><b>お届け先</b></div>
+    <div class="col-md-6">
 
-    <div>
-      <%= f.radio_button :address_type, "user_address", id: :address_type_user, required: true %>
-      <%= f.label :address_type_user, "ご自身の住所" %>
-    </div>
-    <div>
-      〒<%= current_user.postal_code + "　" + current_user.address %>
-      <br>
-      <%= current_user.last_name + current_user.first_name %>
-    </div>
-
-    <div class="row text-center">
-      <div class="col-md-12">
-        <%= f.submit'確認画面へ進む', class: "btn btn-primary" %>
+      <div class="row mb-3">
+        <div class="col-6">商品小計</div>
+        <div class="col-6 text-right">￥<%= number_with_delimiter(@total_amount) %>（税込）</div>
       </div>
-    </div>
-  <% end %>
+      <div class="row mb-3">
+        <div class="col-6">送料</div>
+        <div class="col-6 text-right">￥<%= number_with_delimiter(@postage) %>（税込）</div>
+      </div>
 
+      <div class="row mb-3">
+        <div class="col-6">合計</div>
+        <div class="col-6 text-right">￥<%= number_with_delimiter(@total_amount + @postage) %>（税込）</div>
+      </div>
+
+      <div class="row justify-content-center">
+        <%= f.submit "確認画面へ進む", class: "btn btn-dark btn-block", style: "width: 25rem;" %>
+      </div>
+      <div class="row justify-content-center">
+        <%= link_to cart_items_path, class: "btn btn-light btn-block", style: "width: 25rem;" do %>
+          >カートに戻る
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+  <% end %>
 </div>

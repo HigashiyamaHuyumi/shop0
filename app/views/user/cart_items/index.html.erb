@@ -21,7 +21,7 @@
               <% if cart_item.item.image.attached? %>
                 <%= image_tag cart_item.item.image, width: 160, height: 244 %>
               <% else %>
-                <%= image_tag "no_image.jpg", width: 160, height: 244 %>
+                <%= image_tag "no_image_item.jpg", width: 160, height: 244 %>
               <% end %>
             </div>
 
@@ -52,28 +52,20 @@
       </div>
 
       <div class="col-md-6">
-        <div class="row justify-content-center">
-          商品小計
-          <div id="total-payment">
-            ￥<%= number_with_delimiter(@total_amount) %>（税込）
-          </div>
+
+        <div class="row mb-3">
+          <div class="col-6">商品小計</div>
+          <div class="col-6 text-right">￥<%= number_with_delimiter(@total_amount) %>（税込）</div>
         </div>
-
-
-
-        <div class="row" style="display: flex; justify-content: space-between; align-items: center;">
-          <div style="text-align:left; flex: 1;">
-            <p style="margin: 0;">送料</p>
-          </div>
-          <div style="text-align:right; flex: 1;">
-            <% if @total_amount >= 5000 %>
-              <p style="margin: 0;">￥0（税込）</p>
-            <% elsif @total_amount < 5000 %>
-              <p style="margin: 0;">￥550（税込）</p>
-            <% end %>
-          </div>
+        <div class="row mb-3">
+          <div class="col-6">送料</div>
+          <div class="col-6 text-right">￥<%= number_with_delimiter(@postege) %>（税込）</div>
         </div>
-
+        
+        <div class="row mb-3">
+          <div class="col-6">合計</div>
+          <div class="col-6 text-right">￥<%= number_with_delimiter(@total_amount + @postage) %>（税込）</div>
+        </div>
 
         <div class="row justify-content-center">
           <% if @cart_items.any? %>
@@ -88,6 +80,7 @@
           <% end %>
         </div>
       </div>
+
     </div>
   </div>
   <% end %>
