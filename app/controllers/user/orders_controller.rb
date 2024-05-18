@@ -6,7 +6,7 @@ class User::OrdersController < ApplicationController
     else
       @order = Order.new
       @total_amount = current_user.cart_items.sum(&:subtotal)
-      @postage = @total_amount >= 5000 ? 0 : 550
+      @order.postage = @total_amount >= 5000 ? 0 : 550
     end
   end
 
@@ -16,7 +16,7 @@ class User::OrdersController < ApplicationController
     @order.user_id = current_user.id
 
     @total_amount = current_user.cart_items.sum(&:subtotal)
-    @postage = @total_amount >= 5000 ? 0 : 550
+    @order.postage = @total_amount >= 5000 ? 0 : 550
     @total_payment = @total_amount + @postage
 
     @order.shipping_postal_code = current_user.postal_code
@@ -55,8 +55,6 @@ class User::OrdersController < ApplicationController
     @orders = current_user.orders.all
   end
 
-
-  
   def show # 注文履歴詳細画面
     if params[:id] == "complete"
       # 注文完了画面を表示する処理

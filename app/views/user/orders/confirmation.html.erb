@@ -84,19 +84,7 @@
 
     <div class="col-md-6">
 
-      <div class="row mb-3">
-        <div class="col-6">商品小計</div>
-        <div class="col-6 text-right">￥<%= number_with_delimiter(@total_amount) %>（税込）</div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-6">送料</div>
-        <div class="col-6 text-right">￥<%= number_with_delimiter(@postage) %>（税込）</div>
-      </div>
-
-      <div class="row mb-3">
-        <div class="col-6">合計</div>
-        <div class="col-6 text-right">￥<%= number_with_delimiter(@total_amount + @postage) %>（税込）</div>
-      </div>
+      <%= render 'payment', total_amount: @total_amount, postage: @postage %>
 
       <div class="row justify-content-center">
         <%= f.submit'ご注文を確定する',class: "btn btn-dark btn-block", style: "width: 25rem;" %>
