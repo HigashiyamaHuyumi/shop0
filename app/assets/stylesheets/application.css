@@ -34,3 +34,38 @@
   --swiper-navigation-sides-offset: -40px; /* ナビゲーションボタンの位置 */
   --swiper-pagination-bottom: -20px; /* ページネーションの位置 */
 }
+
+
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navbar-nav .nav-item {
+    position: relative;
+}
+
+.navbar-nav .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #000;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+.navbar-nav .nav-item:hover .dropdown-menu {
+    display: block;
+}

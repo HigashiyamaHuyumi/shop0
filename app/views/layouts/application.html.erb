@@ -33,15 +33,26 @@
 
               <% if user_signed_in? %><!-- 顧客がログインしている場合のメニュー項目 -->
 
-                <li class="nav-item">
-                  <%= link_to items_path do %>
-                    <i class="fa-solid fa-shirt"></i>商品一覧
-                  <% end %>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle btn btn-light" href="#" id="navbarDropdown" role="button">
+                    <i class="fa fa-user"></i> <%= current_user.last_name %>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <%= link_to mypage_path, class: 'dropdown-item' do %>
+                      <i class="fa-solid fa-angle-right"></i> マイページ
+                    <% end %>
+                    <%= link_to orders_path, class: 'dropdown-item' do %>
+                      <i class="fa-solid fa-angle-right"></i> 注文履歴
+                    <% end %>
+                    <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>
+                      <i class="fa-solid fa-angle-right"></i> ログアウト
+                    <% end %>
+                  </div>
                 </li>
 
                 <li class="nav-item">
-                  <%= link_to mypage_path do %>
-                    <i class="fa fa-right-from-bracket"></i> マイページ
+                  <%= link_to items_path do %>
+                    <i class="fa-solid fa-shirt"></i>商品一覧
                   <% end %>
                 </li>
 
@@ -51,11 +62,6 @@
                   <% end %>
                 </li>
 
-                <li class="nav-item">
-                  <%= link_to destroy_user_session_path, method: :delete do %>
-                    <i class="fa fa-right-from-bracket"></i> ログアウト
-                  <% end %>
-                </li>
 
 
               <% elsif admin_signed_in? %><!-- 管理者がログインしている場合のメニュー項目 -->

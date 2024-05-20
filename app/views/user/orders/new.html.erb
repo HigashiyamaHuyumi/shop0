@@ -57,14 +57,14 @@
 
     <div class="col-md-6">
 
-      <%= render 'payment', total_amount: @total_amount, postage: @postage %>
+      <%= render 'payment', total_amount: @total_amount, order: @order %>
 
       <div class="row justify-content-center">
         <%= f.submit "確認画面へ進む", class: "btn btn-dark btn-block", style: "width: 25rem;" %>
       </div>
       <div class="row justify-content-center">
         <%= link_to cart_items_path, class: "btn btn-light btn-block", style: "width: 25rem;" do %>
-          >カートに戻る
+          <i class="fa-solid fa-angle-right"></i>  カートに戻る
         <% end %>
       </div>
 

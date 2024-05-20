@@ -26,9 +26,9 @@ class User::CartItemsController < ApplicationController
     @total_amount = @cart_items.sum(&:subtotal)
     @postage = 0
     if @total_amount >= 5000
-      @postege = 0
+      @postage = 0
     else
-      @postege = 500
+      @postage = 550
     end
   end
 

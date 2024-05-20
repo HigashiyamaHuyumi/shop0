@@ -17,7 +17,7 @@ class User::OrdersController < ApplicationController
 
     @total_amount = current_user.cart_items.sum(&:subtotal)
     @order.postage = @total_amount >= 5000 ? 0 : 550
-    @total_payment = @total_amount + @postage
+    @total_payment = @total_amount + @order.postage
 
     @order.shipping_postal_code = current_user.postal_code
     @order.shipping_address = current_user.address
@@ -52,7 +52,7 @@ class User::OrdersController < ApplicationController
   end
 
   def index #注文履歴画面
-    @orders = current_user.orders.all
+    @orders = current_user.orders.order(created_at: :desc)
   end
 
   def show # 注文履歴詳細画面

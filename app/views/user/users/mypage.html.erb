@@ -1,6 +1,6 @@
 <div class="container">
   <h5 style="text-align: center;">
-    <b>会員登録情報</b>
+    <b>マイページ</b>
   </h5>
 
 
@@ -11,6 +11,12 @@
         <li>
           <%= link_to info_path do %>
             会員登録情報の変更
+          <% end %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            ログアウト
           <% end %>
         </li>
 
