@@ -35,7 +35,7 @@
 
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle btn btn-light" href="#" id="navbarDropdown" role="button">
-                    <i class="fa fa-user"></i> <%= current_user.last_name %>
+                    <i class="fa fa-user"></i> <%= current_user.last_name %>様
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <%= link_to mypage_path, class: 'dropdown-item' do %>
@@ -53,6 +53,12 @@
                 <li class="nav-item">
                   <%= link_to items_path do %>
                     <i class="fa-solid fa-shirt"></i>商品一覧
+                  <% end %>
+                </li>
+
+                <li class="nav-item">
+                  <%= link_to genres_path do %>
+                    ジャンル一覧
                   <% end %>
                 </li>
 

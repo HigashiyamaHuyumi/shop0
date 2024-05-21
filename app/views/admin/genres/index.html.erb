@@ -8,20 +8,31 @@
 
       <div class="text-center">
         <%= form_with model: @genre,url: '/admin/genres', method: :post do |f| %>
-          <%= f.label :name, '新しいジャンル名:' %>
-          <%= f.text_field :name %>
+          <div class="field">
+            <%= f.label :image, "ジャンル画像" %>
+            <%= f.file_field :image, accept: "image/*" %>
+          </div>
+          <div class="field">
+            <%= f.label :name, '新しいジャンル名:' %>
+            <%= f.text_field :name %>
+          </div>
           <%= f.submit '作成する' %>
         <% end %>
       </div>
 
       <div class="row">
+
         <% @genres.each do |genre| %>
           <div class="col-md-6 mb-3">
             <div class="genre">
               <%= link_to edit_admin_genre_path(genre) do %>
+                <% if genre.image.present? %>
+                  <%= image_tag genre.image, width: 150, height: 150 %>
+                <% else %>
+                  <div class="placeholder-image"></div>
+                <% end %>
                 <%= genre.name %>
               <% end %>
-
               |
               <%= link_to '削除', admin_genre_path(genre), method: :delete, data: { confirm: '本当に削除しますか？' } %>
             </div>

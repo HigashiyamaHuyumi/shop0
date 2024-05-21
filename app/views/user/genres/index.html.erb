@@ -1,0 +1,12 @@
+<h1>ジャンル一覧</h1>
+
+<ul class="genre-list">
+  <% @genres.each do |genre| %>
+    <li class="genre-item">
+      <%= link_to genre_path(genre) do %>
+        <%= image_tag genre.image, class: 'genre-image' %><br>
+        <%= genre.name %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

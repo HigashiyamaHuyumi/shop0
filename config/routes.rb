@@ -28,6 +28,7 @@ Rails.application.routes.draw do
  		resources :orders, only: [:new, :create, :index, :show]
  		post '/orders/confirmation', to: 'orders#confirmation', as: 'orders_confirmation'
   	get '/orders/complete', to: 'orders#complete', as: 'orders_complete'
+  	resources :genres,only: [:show, :index]
   end
 
 

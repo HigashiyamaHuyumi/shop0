@@ -13,6 +13,7 @@ class Admin::GenresController < ApplicationController
 
   def edit
     @genre = Genre.find(params[:id])
+    @genre.get_image
   end
 
   def update
@@ -35,7 +36,7 @@ class Admin::GenresController < ApplicationController
   private
 
   def genre_params
-    params.require(:genre).permit(:name)
+    params.require(:genre).permit(:name, :image)
   end
 
 

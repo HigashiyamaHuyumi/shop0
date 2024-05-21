@@ -1,0 +1,26 @@
+// Place all the styles related to the user/genres controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+.genre-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: center; /* 中央に揃える */
+  }
+
+  .genre-item {
+
+    margin: 5px;
+    text-align: center;
+  }
+
+  .genre-image {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }

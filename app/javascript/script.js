@@ -20,7 +20,3 @@ $(document).on('turbolinks:load', function() {
 });
 
 
-function submitForm() {
-  document.getElementById("cart-item-form").submit();
-}
-

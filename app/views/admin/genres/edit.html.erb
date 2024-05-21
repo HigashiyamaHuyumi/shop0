@@ -16,8 +16,22 @@
 
   　<%= form_with model: @genre,url: admin_genre_path(@genre), method: :patch do |f| %>
 
-      <%= f.label :"ジャンル名" %>
-      <%= f.text_field :name %>
+      
+      
+      <div class="field">
+        <%= f.label :current_image, "現在のジャンル画像" %>
+        <%= image_tag @genre.image, width: 150, height: 150 %>
+      </div>
+      
+      <div class="field">
+        <%= f.label :image, "新しい画像" %>
+        <%= f.file_field :image, accept: "image/*" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :name, '新しいジャンル名:' %>
+        <%= f.text_field :name %>
+      </div>
 
     </div>
   </div>
