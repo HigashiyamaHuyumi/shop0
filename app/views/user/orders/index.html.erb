@@ -10,7 +10,8 @@
 
       <div class="row">
         <div class="col-md-6">
-          注文日：<%= order.created_at %>
+          注文日：<%= order.created_at.strftime("%Y/%m/%d") %>
+          <br>注文番号：<%= order.id %>
         </div>
         <div class="col-md-6">
           <%= link_to order_path(order), class: "btn btn-light btn-block" do %>
@@ -20,8 +21,19 @@
       </div>
 
       <% order.order_details.each do |order_detail| %>
-        <div class="row"><%= order_detail.item.name %></div>
-        <div class="row">数量: <%= order_detail.amount %></div>
+        <div class="row">
+          <div class="col-md-2">
+            <% if order_detail.item.image.attached? %>
+              <%= image_tag order_detail.item.image, width: 80, height: 122 %>
+            <% else %>
+              <%= image_tag "no_image_item.jpg", width: 80, height: 122 %>
+            <% end %>
+          </div>
+          <div class="col-md-10">
+            <div class="row"><%= order_detail.item.name %></div>
+            <div class="row">数量: <%= order_detail.amount %></div>
+          </div>
+        </div>
       <% end %>
 
     <% end %>

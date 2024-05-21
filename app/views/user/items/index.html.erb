@@ -2,6 +2,23 @@
 
 <div class="row justify-content-center">
   <div class="col-md-10">
-    <%= render 'item', items: @items %>
+    <div class="row justify-content-center">
+      <% @items.each do |item| %>
+        <div class="col-md-3">
+          <div class="card border-0">
+            <%= link_to item_path(item) do %>
+              <%= image_tag item.get_image, width: 265, height: 300 %>
+              <div class="card-body">
+                <h5 class="card-title"><%= item.name %></h5>
+                <p class="card-text">￥<%= number_with_delimiter(item.price, precision: 0) %></p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <div class="row justify-content-center">
+        <%= paginate @items %>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,88 +1,72 @@
 <div class="container">
-  <h5><span style="background-color: #dcdcdc;">注文履歴詳細</span></h5>
+  <div style="text-align: center;">
+    <h5><b>注文内容の詳細</b></h5>
+  </div>
 
   <div class="row">
+    <div class="col-md-12">
 
-    <div class="col-md-8">
-      <b>注文情報</b>
-      <table class="table" border="1">
-        <tr>
-          <th style="border: 1px solid black;">注文日</th>
-          <td style="border: 1px solid black;"><%= @order.created_at %></td>
-        </tr>
+      <div class="row">
+        注文日：<%= @order.created_at.strftime("%Y/%m/%d") %>
+      </div>
 
-        <tr>
-          <th>配送先</th>
-          <td style="border: 1px solid black;">
-            <%= @order.shipping_postal_code %><br>
-            <%= @order.shipping_address %><br>
-            <%= @order.shipping_name %>
-          </td>
-        </tr>
-
-        <tr>
-          <th style="border: 1px solid black;">支払方法</th>
-          <td style="border: 1px solid black;">
-            <% if @order.payment_method == "credit_card" %>
-              <%= "クレジットカード" %>
-            <% elsif @order.payment_method == "cash" %>
-              <%= "代金引換" %>
+      <% @order_details.each do |order_detail| %>
+        <div class="row">
+          <div class="col-md-2">
+            <% if order_detail.item.image.attached? %>
+              <%= image_tag order_detail.item.image, width: 160, height: 224 %>
+            <% else %>
+              <%= image_tag "no_image_item.jpg", width: 160, height: 224 %>
             <% end %>
-          </td>
-        </tr>
+          </div>
+          <div class="col-md-10">
+            <div class="row">
+              <div class="col-6 text-left">
+                <div class="row"><%= order_detail.item.name %></div>
+                    <p class="width-matched">形式:
+                      <% if order_detail.item.size == "S" %>
+                        <%= "S" %>
+                      <% elsif order_detail.item.size == "M" %>
+                        <%= "M" %>
+                      <% elsif order_detail.item.size == "L" %>
+                        <%= "L" %>
+                      <% end %>
+                    </p>
+                <div class="row">￥<%= (order_detail.purchase_price * 1.1).floor.to_s(:delimited) %>（税込）</div>
+                <div class="row">数量： <%= order_detail.amount %></div>
+              </div>
+              <div class="col-6 text-right d-flex align-items-end justify-content-end">
+                ￥<%= (order_detail.purchase_price * order_detail.amount * 1.1).floor.to_s(:delimited) %>（税込）
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
 
-      </table>
-    </div>
+      <div class="row">
+        送料<%= @order.postage %>
+      </div>
 
-    <div class="col-md-4">
-      <b>請求情報</b>
-      <table class="table" border="1">
-        <tr>
-          <th style="border: 1px solid black;">商品合計</th>
-          <td style="border: 1px solid black;"><%= (@total_payment * 1.1 ).floor.to_s(:delimited) %></td>
-        </tr>
+      <div class="row">
+        合計<%= (@total_payment * 1.1 + @order.postage).floor.to_s(:delimited) %>
+      </div>
 
-        <tr>
-          <th style="border: 1px solid black;">送料</th>
-          <td style="border: 1px solid black;"><%= @order.postage %></td>
-        </tr>
+      <div class="row">
+      <b>お届け先</b>
+        <%= @order.shipping_postal_code %><br>
+        <%= @order.shipping_address %><br>
+        <%= @order.shipping_name %>
+      </div>
 
-        <tr>
-          <th style="border: 1px solid black;">ご請求額</th>
-          <td style="border: 1px solid black;"><%= (@total_payment * 1.1 + @order.postage).floor.to_s(:delimited) %></td>
-        </tr>
-      </table>
-    </div>
-
-  </div>
-
-  <div class="row">
-    <div class="col-md-8">
-
-      <b>注文内容</b>
-
-      <table class="table" border="1">
-        <thead>
-          <tr>
-            <th style="border: 1px solid black;">商品</th>
-            <th style="border: 1px solid black;">単価(税込)</th>
-            <th style="border: 1px solid black;">個数</th>
-            <th style="border: 1px solid black;">小計</th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @order_details.each do |order_detail| %>
-          <tr>
-            <td style="border: 1px solid black;"><%= order_detail.item.name %></td>
-            <td style="border: 1px solid black;"><%= (order_detail.purchase_price * 1.1).floor.to_s(:delimited) %></td>
-            <td style="border: 1px solid black;"><%= order_detail.amount %></td>
-            <td style="border: 1px solid black;"><%= (order_detail.purchase_price * order_detail.amount * 1.1).floor.to_s(:delimited) %></td>
-          </tr>
+      <div class="row">
+      <b>お支払方法</b>
+        <% if @order.payment_method == "credit_card" %>
+          <%= "クレジットカード" %>
+        <% elsif @order.payment_method == "cash" %>
+          <%= "代金引換" %>
         <% end %>
-      </tbody>
-      </table>
+      </div>
+
     </div>
-
   </div>
-
 </div>

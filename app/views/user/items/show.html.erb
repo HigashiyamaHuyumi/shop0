@@ -1,25 +1,34 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-md-5">
-
-      <% if @item.image.attached? %>
-        <%= image_tag @item.image, width: 265, height: 300 %>
-      <% else %>
-        <%= image_tag "no_image.jpg", width: 265, height: 300 %>
-      <% end %>
+    <div class="col-md-6">
+      <%= image_tag @item.get_image, width: 350, height: 500 %>
     </div>
 
-    <div class="col-md-5">
-      <b><%= @item.name %></b>
-      <p><%= @item.introduction %></p>
-      <b>￥<%= number_with_delimiter((@item.price * 1.1).to_i) %></b>(税込)
+    <div class="col-md-6">
+      <h5><%= @item.name %></h5>
+      <h3>￥<%= number_with_delimiter((@item.price * 1.1).to_i) %></h3>
+      <p>COLOR :<%= @item.color %></p>
+
 
       <% if current_user %>
         <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+          <div class="form-group">
+            <p>サイズ</p>
+            <div class="btn-group" role="group" aria-label="サイズ選択">
+              <button type="button" class="btn btn-outline-primary m-1 size-btn" data-size="S">S</button>
+              <button type="button" class="btn btn-outline-primary m-1 size-btn" data-size="M">M</button>
+              <button type="button" class="btn btn-outline-primary m-1 size-btn" data-size="L">L</button>
+            </div>
+            <%= f.hidden_field :size, id: "selected-size" %>
+          </div>
           <%= f.hidden_field :item_id, value: @item.id %>
           <%= f.hidden_field :amount, value: 1 %>
-          <%= f.submit "カートに入れる", class: "btn btn-success" %>
+          <div class="row justify-content-center">
+            <%= button_tag(type: 'submit', class: "btn btn-dark btn-block", style: "width: 25rem;") do %>
+              <i class="fa-solid fa-bag-shopping"></i> カートに入れる
+            <% end %>
+          </div>
         <% end %>
       <% end %>
     </div>

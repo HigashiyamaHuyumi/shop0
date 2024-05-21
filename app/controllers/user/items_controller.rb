@@ -13,7 +13,7 @@ class User::ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :introduction, :price, :color, :image, :genre_id)
+    params.require(:item).permit(:name, :introduction, :price, :color, :image, :genre_id, :size)
   end
 
 end

@@ -23,7 +23,7 @@ Rails.application.routes.draw do
  		  get :confirm, on: :member # 退会確認
      patch :withdrawal, on: :member # 退会処理
  		end
- 		resources :items
+ 		resources :items, only: [:index, :show]
  		resources :cart_items
  		resources :orders, only: [:new, :create, :index, :show]
  		post '/orders/confirmation', to: 'orders#confirmation', as: 'orders_confirmation'
