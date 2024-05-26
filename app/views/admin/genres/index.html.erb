@@ -21,22 +21,15 @@
       </div>
 
       <div class="row">
-
         <% @genres.each do |genre| %>
-          <div class="col-md-6 mb-3">
-            <div class="genre">
-              <%= link_to edit_admin_genre_path(genre) do %>
-                <% if genre.image.present? %>
-                  <%= image_tag genre.image, width: 150, height: 150 %>
-                <% else %>
-                  <div class="placeholder-image"></div>
-                <% end %>
-                <%= genre.name %>
-              <% end %>
-              |
-              <%= link_to '削除', admin_genre_path(genre), method: :delete, data: { confirm: '本当に削除しますか？' } %>
-            </div>
-          </div>
+          <%= link_to edit_admin_genre_path(genre) do %>
+            <% if genre.image.present? %>
+              <%= image_tag genre.image, width: 150, height: 150 %>
+            <% else %>
+              <%= image_tag "no_image_item.png", width: 150, height: 150 %>
+            <% end %>
+            <br><%= genre.name %>
+          <% end %>
         <% end %>
       </div>
 
