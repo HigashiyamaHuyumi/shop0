@@ -7,13 +7,18 @@ class User::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @cart_item = current_user.cart_items.new # カートアイテムを初期化
+    if user_signed_in?
+      @cart_item = current_user.cart_items.new
+    else
+      @item = Item.find(params[:id])
+    end
+    
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:name, :introduction, :price, :color, :image, :genre_id, :size)
+    params.require(:item).permit(:name, :introduction, :price, :color, :image, :genre_id)
   end
 
 end

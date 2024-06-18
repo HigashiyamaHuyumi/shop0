@@ -6,7 +6,6 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.text :introduction
       t.integer :price, null: false
       t.string :color, null: false
-      t.integer :size
       t.timestamps
     end
   end

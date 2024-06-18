@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2024_04_26_105434) do
     t.integer "item_id", null: false
     t.integer "user_id", null: false
     t.integer "amount", null: false
+    t.integer "size"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -72,7 +73,6 @@ ActiveRecord::Schema.define(version: 2024_04_26_105434) do
     t.text "introduction"
     t.integer "price", null: false
     t.string "color", null: false
-    t.integer "size"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

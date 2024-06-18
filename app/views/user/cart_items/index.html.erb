@@ -22,6 +22,7 @@
             </div>
 
             <div class="col-md-8">
+              <div class="row"><%= cart_item.item.name %></div>
               <div class="row">
                 <div class="col-4">
                   ￥<%= number_with_delimiter(cart_item.item.with_tax_price) %>（税込）

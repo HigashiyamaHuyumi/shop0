@@ -2,7 +2,6 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :color, presence: true
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  enum size: { small: 0, medium: 1, large:2 }
 
   has_one_attached :image
   has_many :cart_items

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    
 
     <script src="https://kit.fontawesome.com/1a020bd911.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -44,7 +45,7 @@
                     <%= link_to orders_path, class: 'dropdown-item' do %>
                       <i class="fa-solid fa-angle-right"></i> 注文履歴
                     <% end %>
-                    <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>
+                    <%= button_to  destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>
                       <i class="fa-solid fa-angle-right"></i> ログアウト
                     <% end %>
                   </div>
@@ -73,10 +74,11 @@
               <% elsif admin_signed_in? %><!-- 管理者がログインしている場合のメニュー項目 -->
 
                 <li class="nav-item">
-                  <%= link_to destroy_user_session_path, method: :delete do %>
+                  <%= button_to destroy_admin_session_path, method: :delete do %>
                     <i class="fa fa-right-from-bracket"></i> ログアウト
                   <% end %>
                 </li>
+
 
                 <li class="nav-item">
                   <%= link_to admin_items_path do %>
@@ -100,22 +102,25 @@
               <% else %>
 
                 <li class="nav-item">
-                  <%= link_to new_user_registration_path do %>
-                    <i class="fa fa-arrow-right-to-bracket"></i> 新規登録
-                  <% end %>
-                </li>
-
-                <li class="nav-item">
                   <%= link_to items_path do %>
                     <i class="fa-solid fa-shirt"></i>商品一覧
                   <% end %>
                 </li>
-
-                <li class="nav-item">
-                  <%= link_to new_user_session_path do %>
+                
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle btn btn-light" href="#" id="navbarDropdown" role="button">
                     <i class="fa fa-right-to-bracket"></i> ログイン
-                  <% end %>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <%= link_to new_user_session_path, class: 'dropdown-item' do %>
+                      <i class="fa fa-right-to-bracket"></i> ログイン
+                    <% end %>
+                    <%= link_to new_user_registration_path, class: 'dropdown-item' do %>
+                      <i class="fa fa-arrow-right-to-bracket"></i> 新規登録
+                    <% end %>
+                  </div>
                 </li>
+ 
                <% end %>
 
             </ul>
