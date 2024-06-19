@@ -69,6 +69,7 @@
               <div class="row">
                 <%= cart_item.item.name %>
               </div>
+              <div class="row"><%= cart_item.item.color %> <%= cart_item.size %>サイズ</div>
               <div class="row">
                 ￥<%= number_with_delimiter(cart_item.item.with_tax_price) %>（税込)　数量：<%= cart_item.amount %>
               </div>

@@ -25,7 +25,7 @@
               <%= f.radio_button :size, "L", id: :size_L, class: 'btn btn-outline-primary'  %>
               <%= f.label :size_L, "L" %>
             </div>
-            <%= f.hidden_field :size, id: "selected-size" %>
+
           </div>
           <%= f.hidden_field :item_id, value: @item.id %>
           <%= f.hidden_field :amount, value: 1 %>
