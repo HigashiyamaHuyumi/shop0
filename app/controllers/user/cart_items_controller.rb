@@ -3,23 +3,27 @@ class User::CartItemsController < ApplicationController
 
   def create
     item = Item.find(cart_item_params[:item_id])
-    @user_cart_item = current_user.cart_items.find_by(item_id: item.id)
     amount = cart_item_params[:amount].to_i
+    size = cart_item_params[:size]
+
+    @user_cart_item = current_user.cart_items.find_by(item_id: item.id)
 
     if @user_cart_item
       @user_cart_item.amount += amount
       @user_cart_item.save
     else
-      @cart_item = current_user.cart_items.build(item: item, amount: amount)
+      @cart_item = current_user.cart_items.build(item: item, amount: amount, size: size)
       if @cart_item.save
         flash[:success] = "カートに追加しました。"
       else
         flash[:error] = "商品をカートに追加できませんでした。"
         redirect_to item_path(item)
+        return
       end
     end
     redirect_to cart_items_path
   end
+  
 
   def index
     @cart_items = current_user.cart_items

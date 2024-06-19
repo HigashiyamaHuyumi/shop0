@@ -15,10 +15,15 @@
         <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
           <div class="form-group">
             <p>サイズ</p>
-            <div class="btn-group" role="group" aria-label="サイズ選択">
-              <button type="button" class="btn btn-outline-primary m-1 size-btn" data-size="S">S</button>
-              <button type="button" class="btn btn-outline-primary m-1 size-btn" data-size="M">M</button>
-              <button type="button" class="btn btn-outline-primary m-1 size-btn" data-size="L">L</button>
+              <div class="btn-group" role="group" aria-label="サイズ選択">
+              <%= f.radio_button :size, "S", id: :size_S, class: 'btn btn-outline-primary'  %>
+              <%= f.label :size_S, "S" %>
+  
+              <%= f.radio_button :size, "M", id: :size_M, class: 'btn btn-outline-primary'  %>
+              <%= f.label :size_M, "M" %>
+  
+              <%= f.radio_button :size, "L", id: :size_L, class: 'btn btn-outline-primary'  %>
+              <%= f.label :size_L, "L" %>
             </div>
             <%= f.hidden_field :size, id: "selected-size" %>
           </div>

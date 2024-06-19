@@ -13,13 +13,11 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"; 
 
-import Swiper from 'swiper/swiper-bundle.js';
-import 'swiper/swiper-bundle.css';
-
 import "bootstrap";
 import "../stylesheets/application";
 
-import './script.js';
+import './cart.js';
+import './banner.js';
 
 Rails.start()
 Turbolinks.start()
