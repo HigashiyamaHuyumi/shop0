@@ -16,13 +16,13 @@
           <div class="form-group">
             <p>サイズ</p>
               <div class="btn-group" role="group" aria-label="サイズ選択">
-              <%= f.radio_button :size, "S", id: :size_S, class: 'btn btn-outline-primary'  %>
+              <%= f.radio_button :size, "S", id: :size_S, required: true , class: 'btn btn-outline-primary' %>
               <%= f.label :size_S, "S" %>
   
-              <%= f.radio_button :size, "M", id: :size_M, class: 'btn btn-outline-primary'  %>
+              <%= f.radio_button :size, "M", id: :size_M, required: true , class: 'btn btn-outline-primary' %>
               <%= f.label :size_M, "M" %>
   
-              <%= f.radio_button :size, "L", id: :size_L, class: 'btn btn-outline-primary'  %>
+              <%= f.radio_button :size, "L", id: :size_L, required: true , class: 'btn btn-outline-primary' %>
               <%= f.label :size_L, "L" %>
             </div>
 

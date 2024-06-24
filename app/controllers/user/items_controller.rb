@@ -4,15 +4,10 @@ class User::ItemsController < ApplicationController
     @item = Item.new
     @items = Item.page(params[:page])
   end
-
+  
   def show
     @item = Item.find(params[:id])
-    if user_signed_in?
-      @cart_item = current_user.cart_items.new
-    else
-      @item = Item.find(params[:id])
-    end
-    
+    @cart_item = current_user.cart_items.new if user_signed_in?
   end
 
   private

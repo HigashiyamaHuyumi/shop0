@@ -37,7 +37,7 @@ class User::OrdersController < ApplicationController
           order_id: @order.id, # order_idを設定
           purchase_price: cart_item.item.price,
           amount: cart_item.amount,
-
+          size: cart_item.size,
           item_id: cart_item.item_id
         )
         order_detail.save!

@@ -24,15 +24,16 @@
           <% order.order_details.each do |order_detail| %>
             <div class="row mb-2">
               <div class="col-md-2">
-                <% if order_detail.item.image.attached? %>
+                <% if order_detail.item.present? && order_detail.item.image.attached? %>
                   <%= image_tag order_detail.item.image, width: 80, height: 122 %>
                 <% else %>
-                  <%= image_tag "no_image_item.jpg", width: 80, height: 122 %>
+                  <%= image_tag "no_image_item.png", width: 80, height: 122 %>
                 <% end %>
               </div>
               <div class="col-md-10">
-                <div class="row"><%= order_detail.item.name %></div>
-                <div class="row"><%= order_detail.item.color %>　</div>
+                <div class="row"><%= order_detail.item&.name || "商品が見つかりません" %></div>
+                <div class="row"><%= order_detail.item&.color %>
+                <%= order_detail.size %></div>
                 <div class="row">数量: <%= order_detail.amount %></div>
               </div>
             </div>
